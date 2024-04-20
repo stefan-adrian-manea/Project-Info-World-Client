@@ -1,1 +1,55 @@
-{}
+{
+  "clients": [
+    {
+      "id": "5cd6",
+      "firstName": "assas",
+      "lastName": "aaa",
+      "email": "aaa@aa.co",
+      "phoneNumber": "12345678",
+      "cars": [
+        {
+          "make": "aaa",
+          "model": "asdasd",
+          "year": "1999",
+          "engineType": "",
+          "engineCapacity": "1111",
+          "horsepower": "1111",
+          "kilowatts": "111",
+          "registrationNumber": "111",
+          "chassisNumber": "1111"
+        }
+      ]
+    },
+    {
+      "id": "e401",
+      "firstName": "AAAAAAAAAAAAAAAAAAAAAAAAA",
+      "lastName": "Adrian",
+      "email": "a@s.com",
+      "phoneNumber": "12345678",
+      "cars": [
+        {
+          "make": "aaa",
+          "model": "aaa",
+          "year": "2000",
+          "engineType": "",
+          "engineCapacity": "111",
+          "horsepower": "111",
+          "kilowatts": "111",
+          "registrationNumber": "111",
+          "chassisNumber": "1111"
+        },
+        {
+          "make": "aaa",
+          "model": "vvv",
+          "year": "2024",
+          "engineType": "Benzina",
+          "engineCapacity": "11111",
+          "horsepower": "111",
+          "kilowatts": "1",
+          "registrationNumber": "1",
+          "chassisNumber": "1"
+        }
+      ]
+    }
+  ]
+}
