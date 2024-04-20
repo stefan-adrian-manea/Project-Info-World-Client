@@ -1,0 +1,23 @@
+/* clientList.css */
+
+.client-list-container {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.client-list-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.client-list-table th, .client-list-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.client-list-table th {
+  background-color: #f2f2f2;
+}
