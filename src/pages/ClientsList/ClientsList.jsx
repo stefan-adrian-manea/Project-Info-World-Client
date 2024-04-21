@@ -12,7 +12,7 @@ function ClientList() {
         const fetchedClients = await getClients();
         setClients(fetchedClients);
       } catch (error) {
-        console.error("Nu s-a putut obtine lista de clienti:", error);
+        console.error(error);
       }
     }
     fetchClients();
@@ -24,7 +24,7 @@ function ClientList() {
       const updatedClients = clients.filter((client) => client.id !== clientId);
       setClients(updatedClients);
     } catch (error) {
-      console.error("Nu s-a putut sterge clientul:", error);
+      console.error(error);
     }
   };
 
@@ -49,6 +49,9 @@ function ClientList() {
               <td>{client.email}</td>
               <td>{client.phoneNumber}</td>
               <td>
+                <Link to={`/appointment/${client.id}`}>
+                  <button>Programare</button>
+                </Link>
                 <Link to={`/client-edit/${client.id}`}>
                   <button>Editare</button>
                 </Link>
