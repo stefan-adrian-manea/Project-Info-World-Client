@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+
 import { getClient } from "../../services/clients";
 import { addAppointment } from "../../services/appointments";
 
@@ -8,26 +9,42 @@ const defaultFormData = {
   action: "",
   contact: "",
   interval: "",
-  serviceHistory: {},
 };
 
-function AppointmentClient() {
-  const { id } = useParams();
+function AddAppointment() {
+  const { id: clientID } = useParams();
+  const navigate = useNavigate();
+
   const [client, setClient] = useState(null);
   const [formData, setFormData] = useState(defaultFormData);
-  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchClientData() {
       try {
-        const clientData = await getClient(id);
+        const clientData = await getClient(clientID);
         setClient(clientData);
       } catch (error) {
         console.error(error);
       }
     }
     fetchClientData();
-  }, [id]);
+  }, [clientID]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addAppointment({
+      clientID: clientID,
+      clientName: `${client?.firstName} ${client?.lastName}`,
+      ...formData,
+    });
+    setFormData(defaultFormData);
+    navigate("/appointments");
+  };
 
   const getClientCarsOptions = (clientCars) => {
     return clientCars.map((car, index) => {
@@ -39,18 +56,6 @@ function AppointmentClient() {
         </option>
       );
     });
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    addAppointment({ clientID: id, clientName: `${client?.firstName} ${client?.lastName}`, ...formData });
-    setFormData(defaultFormData);
-    navigate("/appointments")
   };
 
   return (
@@ -94,7 +99,6 @@ function AppointmentClient() {
           required
         />
       </div>
-
       <div>
         <label htmlFor="interval">Interval:</label>
         <input
@@ -114,4 +118,4 @@ function AppointmentClient() {
   );
 }
 
-export default AppointmentClient;
+export default AddAppointment;

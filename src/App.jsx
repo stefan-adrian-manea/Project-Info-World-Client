@@ -3,11 +3,11 @@ import Home from "./pages/Home/Home";
 import AddClients from "./pages/AddClients/AddClients";
 import ClientList from "./pages/ClientsList/ClientsList";
 import EditClient from "./pages/EditClient/EditClient";
-import AppointmentClient from "./pages/AppointmentClient/AppointmentClient";
+import AddAppointment from "./pages/AddAppointment/AddAppointment";
 import AppointmentsList from "./pages/AppointmentsList/AppointmentsList";
 import ServiceHistory from "./pages/ServiceHistory/ServiceHistory";
-import ProcessingHistory from "./pages/ServiceHistory/ProcessingHistory";
-import ReceptionHistory from "./pages/ServiceHistory/ReceptionHistory";
+import ProcessingServiceHistory from "./pages/ServiceHistory/ProcessingServiceHistory/ProcessingServiceHistory";
+import ReceptionServiceHistory from "./pages/ServiceHistory/ReceptionServiceHistory/ReceptionServiceHistory";
 import Navbar from "./components/Navbar";
 function App() {
   return (
@@ -19,10 +19,10 @@ function App() {
         <Route path="/clients-list" element={<ClientList />} />
         <Route path="/client-edit/:id" element={<EditClient />} />
         <Route path="/appointments" element={<AppointmentsList />} />
-        <Route path="/appointment/:id" element={<AppointmentClient />} />
+        <Route path="/appointment/:id" element={<AddAppointment />} />
         <Route path="/history-service/:id" element={<ServiceHistory />} />
-        <Route path="/history-service/:id/reception" element={<ReceptionHistory />} />
-        <Route path="/history-service/:id/processing" element={<ProcessingHistory />} />
+        <Route path="/history-service/:id/reception" element={<ReceptionServiceHistory />} />
+        <Route path="/history-service/:id/processing" element={<ProcessingServiceHistory />} />
       </Routes>
     </>
   );
