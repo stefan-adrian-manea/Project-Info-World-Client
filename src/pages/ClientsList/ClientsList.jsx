@@ -1,32 +1,21 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getClients, deleteClient } from "../../services/clients";
+import { getClients } from "../../services/clients";
 
-import "./ClientsList.css";
-function ClientList() {
+import "./ClientsList.css"
+function ClientsList() {
   const [clients, setClients] = useState([]);
 
   useEffect(() => {
     async function fetchClients() {
       try {
-        const fetchedClients = await getClients();
-        setClients(fetchedClients);
+        setClients(await getClients());
       } catch (error) {
         console.error(error);
       }
     }
     fetchClients();
   }, []);
-
-  const handleDeleteClient = async (clientId) => {
-    try {
-      await deleteClient(clientId);
-      const updatedClients = clients.filter((client) => client.id !== clientId);
-      setClients(updatedClients);
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   return (
     <div className="client-list-container">
@@ -42,20 +31,15 @@ function ClientList() {
           </tr>
         </thead>
         <tbody>
-          {clients.map((client, index) => (
+          {clients.reverse().map((client, index) => (
             <tr key={index}>
               <td>{client.lastName}</td>
               <td>{client.firstName}</td>
               <td>{client.email}</td>
               <td>{client.phoneNumber}</td>
               <td>
-                <Link to={`/appointment/${client.id}`}>
-                  <button>Programare</button>
-                </Link>
-                <Link to={`/client-edit/${client.id}`}>
-                  <button>Editare</button>
-                </Link>
-                <button onClick={() => handleDeleteClient(client.id)}>Sterge</button>
+                <Link to={`/appointment/${client.id}`}>Programare</Link>
+                <Link to={`/client/${client.id}`}>View Client</Link>
               </td>
             </tr>
           ))}
@@ -65,4 +49,4 @@ function ClientList() {
   );
 }
 
-export default ClientList;
+export default ClientsList;

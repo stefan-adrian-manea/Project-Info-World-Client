@@ -1,73 +1,188 @@
 {
   "clients": [
     {
-      "id": "5cd6",
-      "firstName": "assas",
-      "lastName": "aaa",
-      "email": "aaa@aa.co",
-      "phoneNumber": "12345678",
+      "firstName": "John12",
+      "lastName": "Doe",
+      "email": "johndoe@example.com",
+      "phoneNumber": "+1234567890",
       "cars": [
         {
-          "make": "aaa11111111",
-          "model": "asdasd",
-          "year": "1999",
-          "engineType": "",
-          "engineCapacity": "1111",
-          "horsepower": "1111",
-          "kilowatts": "111",
-          "registrationNumber": "111",
-          "chassisNumber": "1111"
-        }
-      ]
-    },
-    {
-      "id": "e401",
-      "firstName": "AAAAAAAAAAAAAAAAAAAAAAAAA",
-      "lastName": "Adrian",
-      "email": "a@s.com",
-      "phoneNumber": "12345678",
-      "cars": [
-        {
-          "make": "aaa",
-          "model": "aaa",
-          "year": "2000",
-          "engineType": "",
-          "engineCapacity": "111",
-          "horsepower": "111",
-          "kilowatts": "111",
-          "registrationNumber": "111",
-          "chassisNumber": "1111"
+          "make": "Toyota",
+          "model": "Corolla",
+          "year": "2018",
+          "engineType": "diesel",
+          "engineCapacity": "1.8",
+          "horsepower": "140",
+          "kilowatts": "104",
+          "registrationNumber": "ABC123",
+          "chassisNumber": "1234567890"
         },
         {
-          "make": "aaa",
-          "model": "vvv",
-          "year": "2024",
-          "engineType": "Benzina",
-          "engineCapacity": "11111",
-          "horsepower": "111",
-          "kilowatts": "1",
-          "registrationNumber": "1",
-          "chassisNumber": "1"
+          "make": "Honda",
+          "model": "Civic",
+          "year": "2020",
+          "engineType": "gasoline",
+          "engineCapacity": "2.0",
+          "horsepower": "160",
+          "kilowatts": "119",
+          "registrationNumber": "DEF456",
+          "chassisNumber": "0987654321"
+        }
+      ],
+      "id": "8d52"
+    },
+    {
+      "id": "6f91",
+      "firstName": "Alice",
+      "lastName": "Smith",
+      "email": "alice.smith@example.com",
+      "phoneNumber": "+1987654321",
+      "cars": [
+        {
+          "make": "Ford",
+          "model": "Focus",
+          "year": "2019",
+          "engineType": "Gasoline",
+          "engineCapacity": "1.6",
+          "horsepower": "120",
+          "kilowatts": "89",
+          "registrationNumber": "XYZ789",
+          "chassisNumber": "9876543210"
+        },
+        {
+          "make": "Chevrolet",
+          "model": "Cruze",
+          "year": "2017",
+          "engineType": "Petrol",
+          "engineCapacity": "1.4",
+          "horsepower": "150",
+          "kilowatts": "112",
+          "registrationNumber": "GHI987",
+          "chassisNumber": "0123456789"
         }
       ]
     },
     {
-      "id": "3335",
-      "firstName": "Client",
-      "lastName": "client",
-      "email": "email.client@co",
-      "phoneNumber": "12345678",
+      "id": "3b78",
+      "firstName": "Emily",
+      "lastName": "Johnson",
+      "email": "emily.johnson@example.com",
+      "phoneNumber": "+1654321879",
       "cars": [
         {
-          "make": "Marca",
-          "model": "Model",
-          "year": "2000",
-          "engineType": "Benzina",
-          "engineCapacity": "2000",
-          "horsepower": "120",
-          "kilowatts": "120",
-          "registrationNumber": "12313212",
-          "chassisNumber": "212121"
+          "make": "Volkswagen",
+          "model": "Golf",
+          "year": "2020",
+          "engineType": "Gasoline",
+          "engineCapacity": "1.8",
+          "horsepower": "150",
+          "kilowatts": "112",
+          "registrationNumber": "JKL456",
+          "chassisNumber": "5678901234"
+        },
+        {
+          "make": "BMW",
+          "model": "3 Series",
+          "year": "2016",
+          "engineType": "Petrol",
+          "engineCapacity": "2.0",
+          "horsepower": "180",
+          "kilowatts": "134",
+          "registrationNumber": "MNO123",
+          "chassisNumber": "3456789012"
+        }
+      ]
+    },
+    {
+      "id": "1a45",
+      "firstName": "Michael",
+      "lastName": "Brown",
+      "email": "michael.brown@example.com",
+      "phoneNumber": "+1789456123",
+      "cars": [
+        {
+          "make": "Audi",
+          "model": "A4",
+          "year": "2017",
+          "engineType": "Petrol",
+          "engineCapacity": "2.0",
+          "horsepower": "190",
+          "kilowatts": "142",
+          "registrationNumber": "PQR789",
+          "chassisNumber": "4567890123"
+        },
+        {
+          "make": "Mercedes-Benz",
+          "model": "C-Class",
+          "year": "2019",
+          "engineType": "Gasoline",
+          "engineCapacity": "2.2",
+          "horsepower": "170",
+          "kilowatts": "127",
+          "registrationNumber": "STU456",
+          "chassisNumber": "2345678901"
+        }
+      ]
+    },
+    {
+      "id": "9c23",
+      "firstName": "Sophia",
+      "lastName": "Miller",
+      "email": "sophia.miller@example.com",
+      "phoneNumber": "+1876543210",
+      "cars": [
+        {
+          "make": "Hyundai",
+          "model": "Elantra",
+          "year": "2018",
+          "engineType": "Petrol",
+          "engineCapacity": "1.6",
+          "horsepower": "130",
+          "kilowatts": "97",
+          "registrationNumber": "VWX234",
+          "chassisNumber": "6789012345"
+        },
+        {
+          "make": "Kia",
+          "model": "Sorento",
+          "year": "2021",
+          "engineType": "Gasoline",
+          "engineCapacity": "2.4",
+          "horsepower": "185",
+          "kilowatts": "138",
+          "registrationNumber": "YZA567",
+          "chassisNumber": "4567890123"
+        }
+      ]
+    },
+    {
+      "id": "5e87",
+      "firstName": "David",
+      "lastName": "Wilson",
+      "email": "david.wilson@example.com",
+      "phoneNumber": "+1543210987",
+      "cars": [
+        {
+          "make": "Toyota",
+          "model": "Camry",
+          "year": "2020",
+          "engineType": "Petrol",
+          "engineCapacity": "2.5",
+          "horsepower": "200",
+          "kilowatts": "149",
+          "registrationNumber": "BCD345",
+          "chassisNumber": "8901234567"
+        },
+        {
+          "make": "Ford",
+          "model": "Escape",
+          "year": "2019",
+          "engineType": "Gasoline",
+          "engineCapacity": "2.0",
+          "horsepower": "180",
+          "kilowatts": "134",
+          "registrationNumber": "EFG678",
+          "chassisNumber": "9012345678"
         }
       ]
     }
@@ -120,6 +235,15 @@
         "repairedOtherIssues": false,
         "repairDuration": "130"
       }
+    },
+    {
+      "id": "c772",
+      "clientID": "5716",
+      "clientName": "sa as",
+      "car": "aaa 21 (21)",
+      "action": "dsadsada",
+      "contact": "Tel: 1212",
+      "interval": "14:00"
     }
   ]
 }
