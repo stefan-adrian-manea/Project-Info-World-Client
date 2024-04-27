@@ -4,6 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 import { addReceptionServiceHistory, getAppointment } from "../../../services/appointments";
 
+import TextareaField from "../../../components/formComponents/TextareaField";
+import SelectField from "../../../components/formComponents/SelectField";
+import InputField from "../../../components/formComponents/InputField";
+
 const defaultFormState = {
   serviceType: "",
   isScratched: false,
@@ -16,7 +20,7 @@ const defaultFormState = {
 function ReceptionServiceHistory() {
   const { id: appointmentID } = useParams();
   const navigate = useNavigate();
-  
+
   const [receptionServiceHistory, setReceptionServiceHistory] = useState(defaultFormState);
   const [appointmentData, setAppointmentData] = useState(null);
 
@@ -46,78 +50,68 @@ function ReceptionServiceHistory() {
   };
 
   return (
-    <div>
-      <h3>Reception History</h3>
-      <form onSubmit={handleForm}>
-        <div>
-          <label htmlFor="serviceType">Service Type:</label>
-          <select
+      <div>
+        <h3>Reception History</h3>
+        <form onSubmit={handleForm}>
+          <SelectField
             id="serviceType"
             name="serviceType"
+            label="Service Type"
             value={receptionServiceHistory.serviceType}
             onChange={handleChange}
-          >
-            <option value="">Select service type</option>
-            <option value="revision">Revision</option>
-            <option value="verification">Verification</option>
-          </select>
-        </div>
-        <div>
-          <label htmlFor="isScratched">Scratched:</label>
-          <input
-            type="checkbox"
+            options={[
+              { value: "", label: "Select service type" },
+              { value: "revision", label: "Revision" },
+              { value: "verification", label: "Verification" },
+            ]}
+          />
+          <InputField
             id="isScratched"
             name="isScratched"
+            label="Scratched"
+            type="checkbox"
             checked={receptionServiceHistory.isScratched}
             onChange={handleChange}
           />
-        </div>
-        {receptionServiceHistory.isScratched && (
-          <div>
-            <label htmlFor="scratchedLocation">Scratched Location:</label>
-            <input
-              type="text"
+          {receptionServiceHistory.isScratched && (
+            <InputField
               id="scratchedLocation"
               name="scratchedLocation"
+              label="Scratched Location"
+              type="text"
               value={receptionServiceHistory.scratchedLocation}
               onChange={handleChange}
             />
-          </div>
-        )}
-        <div>
-          <label htmlFor="isDamaged">Damaged:</label>
-          <input
-            type="checkbox"
+          )}
+          <InputField
             id="isDamaged"
             name="isDamaged"
+            label="Damaged"
+            type="checkbox"
             checked={receptionServiceHistory.isDamaged}
             onChange={handleChange}
           />
-        </div>
-        {receptionServiceHistory.isDamaged && (
-          <div>
-            <label htmlFor="damageLocation">Damage Location:</label>
-            <input
-              type="text"
+          {receptionServiceHistory.isDamaged && (
+            <InputField
               id="damageLocation"
               name="damageLocation"
+              label="Damage Location"
+              type="text"
               value={receptionServiceHistory.damageLocation}
               onChange={handleChange}
             />
-          </div>
-        )}
-        <div>
-          <label htmlFor="mentionedProblems">Mentioned Problems:</label>
-          <textarea
+          )}
+          <TextareaField
             id="mentionedProblems"
             name="mentionedProblems"
+            label="Mentioned Problems"
             value={receptionServiceHistory.mentionedProblems}
             onChange={handleChange}
           />
-        </div>
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+      
   );
 }
 
