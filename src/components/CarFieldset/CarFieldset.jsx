@@ -40,6 +40,7 @@ function CarFieldset({ index, carData, handleRemoveCar, onChange }) {
         onChange={onChange}
         required
         options={[
+          { value: "", label: "Select engine type" },
           { value: "diesel", label: "Diesel" },
           { value: "gasoline", label: "Gasoline" },
           { value: "hybrid", label: "Hybrid" },
