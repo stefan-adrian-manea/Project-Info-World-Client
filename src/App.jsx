@@ -2,7 +2,6 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import ClientAdd from "./pages/ClientAdd/ClientAdd";
 import ClientsList from "./pages/ClientsList/ClientsList";
-// import EditClient from "./pages/EditClient/EditClient";
 import ClientView from "./pages/ClientView/ClientView"
 import AppointmentAdd from "./pages/AppointmentAdd/AppointmentAdd";
 import AppointmentsList from "./pages/AppointmentsList/AppointmentsList";

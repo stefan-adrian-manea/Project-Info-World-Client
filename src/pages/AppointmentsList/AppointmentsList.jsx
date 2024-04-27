@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getAppointments } from "../../services/appointments";
+import  AppointmentCard  from "../../components/AppointmentCard/AppointmentCard";
 
 function AppointmentsList() {
   const [appointments, setAppointments] = useState([]);
@@ -19,16 +20,9 @@ function AppointmentsList() {
 
   return (
     <div>
-      <h2>Appointment List</h2>
+      <h2>Appointments List</h2>
       {appointments.map((appointment) => (
-        <div key={appointment.id} style={{ marginBottom: "20px" }}>
-          <div>Interval: {appointment.interval}</div>
-          <div>Name: {appointment.clientName}</div>
-          <div>Contact: {appointment.contact}</div>
-          <div>Car: {appointment.car}</div>
-          <div>Action: {appointment.action}</div>
-          <Link to={`/history-service/${appointment.id}`}>Appointment Details</Link>
-        </div>
+        <AppointmentCard key={appointment.id} appointment={appointment} showDetailsLink={true} />
       ))}
     </div>
   );
