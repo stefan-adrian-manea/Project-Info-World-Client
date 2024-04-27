@@ -1,4 +1,4 @@
-function InputField({ id, name, label, type, value, onChange, required }) {
+function InputField({ id, name, label, type, value, onChange, required, ...otherProps }) {
   return (
     <div>
       <label htmlFor={id}>
@@ -12,6 +12,7 @@ function InputField({ id, name, label, type, value, onChange, required }) {
         value={value}
         onChange={onChange}
         required={required}
+        {...otherProps}
       />
     </div>
   );
