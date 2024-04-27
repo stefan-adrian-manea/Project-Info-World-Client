@@ -1,116 +1,99 @@
-function CarFieldset({ carData, onChange }) {
-    
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    onChange({ ...carData, [name]: value });
-  };
+import InputField from "../formComponents/InputField";
+import SelectField from "../formComponents/SelectField";
 
+function CarFieldset({ index, carData, handleRemoveCar, onChange }) {
   return (
-    <div className="fieldset">
-      <h2>Informatii despre masina</h2>
-      <div>
-        <label htmlFor="make">Marca:</label>
-        <input
-          type="text"
-          id="make"
-          name="make"
-          value={carData.make}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="model">Model:</label>
-        <input
-          type="text"
-          id="model"
-          name="model"
-          value={carData.model}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="year">An fabricatie:</label>
-        <input
-          type="number"
-          id="year"
-          name="year"
-          value={carData.year}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="engineType">Tip motorizare:</label>
-        <select
-          id="engineType"
-          name="engineType"
-          value={carData.engineType}
-          onChange={handleChange}
-          required
-        >
-          <option value="Diesel">Diesel</option>
-          <option value="Benzina">Benzina</option>
-          <option value="Hibrid">Hibrid</option>
-          <option value="Electric">Electric</option>
-        </select>
-      </div>
-      <div>
-        <label htmlFor="engineCapacity">Capacitate motor:</label>
-        <input
-          type="number"
-          id="engineCapacity"
-          name="engineCapacity"
-          value={carData.engineCapacity}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="horsepower">Cai putere:</label>
-        <input
-          type="number"
-          id="horsepower"
-          name="horsepower"
-          value={carData.horsepower}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="kilowatts">kW putere:</label>
-        <input
-          type="number"
-          id="kilowatts"
-          name="kilowatts"
-          value={carData.kilowatts}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="registrationNumber">Numar inmatriculare:</label>
-        <input
-          type="text"
-          id="registrationNumber"
-          name="registrationNumber"
-          value={carData.registrationNumber}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="chassisNumber">Serie sasiu:</label>
-        <input
-          type="text"
-          id="chassisNumber"
-          name="chassisNumber"
-          value={carData.chassisNumber}
-          onChange={handleChange}
-          required
-        />
-      </div>
+    <div className="car-fieldset">
+      <h2>Car {index + 1} information</h2>
+      <InputField
+        id="make"
+        name="make"
+        label="Marca"
+        type="text"
+        value={carData.make}
+        onChange={onChange}
+        required
+      />
+      <InputField
+        id="model"
+        name="model"
+        label="Model"
+        type="text"
+        value={carData.model}
+        onChange={onChange}
+        required
+      />
+      <InputField
+        id="year"
+        name="year"
+        label="An fabricatie"
+        type="number"
+        value={carData.year}
+        onChange={onChange}
+        required
+      />
+      <SelectField
+        id="engineType"
+        name="engineType"
+        label="Tip motorizare"
+        value={carData.engineType}
+        onChange={onChange}
+        required
+        options={[
+          { value: "diesel", label: "Diesel" },
+          { value: "gasoline", label: "Gasoline" },
+          { value: "hybrid", label: "Hybrid" },
+          { value: "electric", label: "Electric" },
+        ]}
+      />
+      <InputField
+        id="engineCapacity"
+        name="engineCapacity"
+        label="Capacitate motor"
+        type="number"
+        value={carData.engineCapacity}
+        onChange={onChange}
+        required
+      />
+      <InputField
+        id="horsepower"
+        name="horsepower"
+        label="Cai putere"
+        type="number"
+        value={carData.horsepower}
+        onChange={onChange}
+        required
+      />
+      <InputField
+        id="kilowatts"
+        name="kilowatts"
+        label="kW putere"
+        type="number"
+        value={carData.kilowatts}
+        onChange={onChange}
+        required
+      />
+      <InputField
+        id="registrationNumber"
+        name="registrationNumber"
+        label="Numar inmatriculare"
+        type="text"
+        value={carData.registrationNumber}
+        onChange={onChange}
+        required
+      />
+      <InputField
+        id="chassisNumber"
+        name="chassisNumber"
+        label="Serie sasiu"
+        type="text"
+        value={carData.chassisNumber}
+        onChange={onChange}
+        required
+      />
+      <button type="button" onClick={handleRemoveCar}>
+        Delete car
+      </button>
     </div>
   );
 }
