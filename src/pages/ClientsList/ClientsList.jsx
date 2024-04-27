@@ -38,7 +38,7 @@ function ClientsList() {
               <td>{client.email}</td>
               <td>{client.phoneNumber}</td>
               <td>
-                <Link to={`/appointment/${client.id}`}>Programare</Link>
+                <Link to={`/appointment-add/${client.id}`}>Programare</Link>
                 <Link to={`/client/${client.id}`}>View Client</Link>
               </td>
             </tr>

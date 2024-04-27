@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 function ReceptionServiceCard({ receptionServiceData }) {
+  const currentPath = window.location.pathname;
   return (
     <>
       <h3>Reception</h3>
@@ -16,7 +18,9 @@ function ReceptionServiceCard({ receptionServiceData }) {
           <div>Mentioned Problems: {receptionServiceData?.mentionedProblems}</div>
         </div>
       ) : (
-        <p>Reception data has not been entered</p>
+        <Link to={`${currentPath}/reception`}>
+          <span>Add reception information</span>
+        </Link>
       )}
     </>
   );

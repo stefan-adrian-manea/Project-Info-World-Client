@@ -9,7 +9,7 @@ function AppointmentCard({ appointment, showDetailsLink }) {
       <div>Contact: {contact}</div>
       <div>Car: {car}</div>
       <div>Action: {action}</div>
-      <div>{showDetailsLink ? <Link to={`/history-service/${id}`}>Details</Link> : ""}</div>
+      <div>{showDetailsLink ? <Link to={`/appointment-service/${id}`}>Details</Link> : ""}</div>
     </div>
   );
 }

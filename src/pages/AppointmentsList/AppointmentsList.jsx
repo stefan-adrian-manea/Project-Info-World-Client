@@ -16,7 +16,7 @@ function AppointmentsList() {
       }
     }
     fetchAppointmentsData();
-  }, []);
+  }, [appointments]);
 
   return (
     <div>

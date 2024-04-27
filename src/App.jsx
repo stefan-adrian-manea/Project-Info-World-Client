@@ -22,10 +22,10 @@ function App() {
         <Route path="/client/:id" element={<ClientView />} />
         <Route path="/client/edit/:id" element={<ClientEdit />} />
         <Route path="/appointments" element={<AppointmentsList />} />
-        <Route path="/appointment/:id" element={<AppointmentAdd />} />
-        <Route path="/history-service/:id" element={<ServiceHistory />} />
-        <Route path="/history-service/:id/reception" element={<ReceptionServiceHistory />} />
-        <Route path="/history-service/:id/processing" element={<ProcessingServiceHistory />} />
+        <Route path="/appointment-add/:id" element={<AppointmentAdd />} />
+        <Route path="/appointment-service/:id" element={<ServiceHistory />} />
+        <Route path="/appointment-service/:id/reception" element={<ReceptionServiceHistory />} />
+        <Route path="/appointment-service/:id/processing" element={<ProcessingServiceHistory />} />
       </Routes>
     </>
   );

@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 function ProcessingServiceCard({ processingServiceData }) {
+  const currentPath = window.location.pathname;
   return (
     <>
       <h3>Processing</h3>
@@ -13,7 +15,9 @@ function ProcessingServiceCard({ processingServiceData }) {
           <div>Repair Duration: {processingServiceData?.repairDuration}</div>
         </div>
       ) : (
-        <p>Processing data has not been entered</p>
+        <Link to={`${currentPath}/processing`}>
+          <span>Add processing car information</span>
+        </Link>
       )}
     </>
   );
