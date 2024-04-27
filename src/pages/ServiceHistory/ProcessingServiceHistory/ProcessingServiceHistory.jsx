@@ -1,55 +1,20 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
-import { getAppointment, addProcessingServiceHistory } from "../../../services/appointments";
+import { useAppointmentService } from "../../../context/AppointmentServiceContext/AppointmentServiceContext";
+
 import TextareaField from "../../../components/formComponents/TextareaField";
 import InputField from "../../../components/formComponents/InputField";
 
-
-const defaultForm = {
-  partsChanged: "",
-  operations: "",
-  otherIssues: "",
-  repairedOtherIssues: false,
-  repairDuration: "",
-};
-
 function ProcessingServiceHistory() {
-  const [processingServiceHistory, setProcessingServiceHistory] = useState(defaultForm);
-  const { id: appointmentID } = useParams();
-  const [appointmentData, setAppointmentData] = useState(null);
+  const { processingServiceHistory, handleProcessingFormSubmission, handleChangeProcessing } =
+    useAppointmentService();
+
+    const { id: appointmentID } = useParams();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    async function fetchAppointmentData() {
-      try {
-        const currentAppointmentData = await getAppointment(appointmentID);
-        setAppointmentData(currentAppointmentData);
-      } catch (error) {
-        console.error("Error fetching appointment data:", error);
-      }
-    }
-    fetchAppointmentData();
-  }, [appointmentID]);
-
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    const newValue = type === "checkbox" ? checked : value;
-    setProcessingServiceHistory({ ...processingServiceHistory, [name]: newValue });
-  };
 
   const handleForm = async (e) => {
     e.preventDefault();
-    try {
-      await addProcessingServiceHistory(appointmentID, {
-        ...appointmentData,
-        processingServiceHistory: processingServiceHistory,
-      });
-      setProcessingServiceHistory(defaultForm);
-    } catch (error) {
-      console.error("Error adding processing history:", error);
-    }
+    handleProcessingFormSubmission(appointmentID);
     navigate(-1);
   };
 
@@ -63,7 +28,7 @@ function ProcessingServiceHistory() {
           label="Parts Changed"
           type="text"
           value={processingServiceHistory.partsChanged}
-          onChange={handleChange}
+          onChange={handleChangeProcessing}
           required
         />
         <TextareaField
@@ -71,7 +36,7 @@ function ProcessingServiceHistory() {
           name="operations"
           label="Operations Performed"
           value={processingServiceHistory.operations}
-          onChange={handleChange}
+          onChange={handleChangeProcessing}
           required
         />
         <TextareaField
@@ -79,7 +44,7 @@ function ProcessingServiceHistory() {
           name="otherIssues"
           label="Other Issues Detected"
           value={processingServiceHistory.otherIssues}
-          onChange={handleChange}
+          onChange={handleChangeProcessing}
         />
         <InputField
           id="repairedOtherIssues"
@@ -87,7 +52,7 @@ function ProcessingServiceHistory() {
           label="Repaired Other Issues"
           type="checkbox"
           checked={processingServiceHistory.repairedOtherIssues}
-          onChange={handleChange}
+          onChange={handleChangeProcessing}
         />
         <InputField
           id="repairDuration"
@@ -95,7 +60,7 @@ function ProcessingServiceHistory() {
           label="Repair Duration (minutes)"
           type="number"
           value={processingServiceHistory.repairDuration}
-          onChange={handleChange}
+          onChange={handleChangeProcessing}
           required
           step="10"
           min="0"

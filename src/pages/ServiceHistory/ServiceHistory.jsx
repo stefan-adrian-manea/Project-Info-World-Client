@@ -1,16 +1,19 @@
-import { useState, useEffect } from "react";
+import {  useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getAppointment } from "../../services/appointments";
 
+import { useAppointmentService } from "../../context/AppointmentServiceContext/AppointmentServiceContext";
+import { getAppointment } from "../../services/appointments";
 
 import AppointmentCard from "../../components/AppointmentCard/AppointmentCard";
 import ProcessingServiceCard from "../../components/ProcessingServiceCard/ProcessingServiceCard";
 import ReceptionServiceCard from "../../components/ReceptionServiceCard/ReceptionServiceCard";
+
 function ServiceHistory() {
-  const currentPath = window.location.pathname;
-  const [appointmentData, setAppointmentData] = useState({});
+  const { appointmentData, setAppointmentData } = useAppointmentService();
   const { id: appointmentID } = useParams();
 
+  const currentPath = window.location.pathname;
+  
   useEffect(() => {
     async function fetchAppointmentData() {
       try {
@@ -21,7 +24,8 @@ function ServiceHistory() {
       }
     }
     fetchAppointmentData();
-  }, [appointmentID]);
+  }, [appointmentID, appointmentData]);
+  
   return (
     <div>
       <h3>Appointment Details</h3>
