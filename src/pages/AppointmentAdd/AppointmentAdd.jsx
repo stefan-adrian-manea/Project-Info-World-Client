@@ -7,6 +7,7 @@ import { addAppointment } from "../../services/appointments";
 import TextareaField from "../../components/formComponents/TextareaField";
 import InputField from "../../components/formComponents/InputField";
 import SelectField from "../../components/formComponents/SelectField";
+import { validateAppointment } from "../../utils/validation";
 
 const defaultFormData = {
   car: "",
@@ -34,11 +35,18 @@ function AppointmentAdd() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { firstName, lastName } = clientData;
-    addAppointment({
+    const appointmentData = {
       clientID: clientID,
       clientName: `${firstName} ${lastName}`,
       ...formData,
-    });
+    }
+    const validAppointment = validateAppointment(appointmentData)
+    if(validAppointment.isValid === false){
+      window.alert(validAppointment.message);
+      return;
+    }
+
+    addAppointment(appointmentData);
     setFormData(defaultFormData);
     navigate("/appointments");
   };
