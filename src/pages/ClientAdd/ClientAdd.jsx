@@ -1,8 +1,8 @@
 import { useClient } from "../../hooks/useClient";
-
 import CarFieldset from "../../components/CarFieldset/CarFieldset";
 import ClientFieldset from "../../components/ClientFieldset/ClientFieldset";
-
+import "./ClientAdd.css";
+import "../../common-style/ClientForm.css"
 function ClientAdd() {
   const {
     clientData,
@@ -12,35 +12,36 @@ function ClientAdd() {
     handleAddCar,
     handleRemoveCar,
     handleSubmitAddClient,
+    handlePowerChange,
   } = useClient();
 
- 
   const handleSubmit = (e) => {
     e.preventDefault();
     handleSubmitAddClient();
   };
 
   return (
-    <div>
-      <h1>Add new client</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="from-client-container">
+      <h2 className="title text-center mb-3">Add new client</h2>
+      <form onSubmit={handleSubmit} className="form-client">
         <ClientFieldset
           formData={clientData}
           handleClientChange={handleClientChange}
           handleAddCar={handleAddCar}
         />
-        <div className="container-car-fieldset">
-          {carsList.map((carData, index) => (
-            <CarFieldset
-              key={index}
-              index={index}
-              carData={carData}
-              handleRemoveCar={() => handleRemoveCar(index)}
-              onChange={(e) => handleCarChange(e, index)}
-            />
-          ))}
-        </div>
-        <button type="submit">Add Client</button>
+        {carsList.map((carData, index) => (
+          <CarFieldset
+            key={index}
+            index={index}
+            carData={carData}
+            handleRemoveCar={() => handleRemoveCar(index)}
+            handleCarChange={(e) => handleCarChange(e, index)}
+            handlePowerChange={(e) => handlePowerChange(e, index)}
+          />
+        ))}
+        <button type="submit" className="btn btn-primary btn-block">
+          Add Client
+        </button>
       </form>
     </div>
   );

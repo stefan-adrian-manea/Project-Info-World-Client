@@ -4,6 +4,7 @@ import { useAppointmentService } from "../../../context/AppointmentServiceContex
 
 import TextareaField from "../../../components/formComponents/TextareaField";
 import InputField from "../../../components/formComponents/InputField";
+import { isValidRepairDuration } from "../../../utils/validation";
 
 function ProcessingServiceHistory() {
   const { processingServiceHistory, handleProcessingFormSubmission, handleChangeProcessing } =
@@ -14,6 +15,11 @@ function ProcessingServiceHistory() {
 
   const handleForm = async (e) => {
     e.preventDefault();
+    const validRepairDuration =  isValidRepairDuration(processingServiceHistory.repairDuration);
+    if(validRepairDuration.isValid === false){
+      window.alert(validRepairDuration.message);
+      return;
+    }
     handleProcessingFormSubmission(appointmentID);
     navigate(-1);
   };

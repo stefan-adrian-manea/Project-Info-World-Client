@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import {  useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { useClient } from "../../hooks/useClient";
 import { deleteClient } from "../../services/clients";
@@ -7,8 +7,9 @@ import { deleteClient } from "../../services/clients";
 import ClientFieldset from "../../components/ClientFieldset/ClientFieldset";
 import CarFieldset from "../../components/CarFieldset/CarFieldset";
 
+import "./ClientEdit.css";
+import "../../common-style/ClientForm.css"
 function ClientEdit() {
-
   const {
     handleGetClient,
     clientData,
@@ -18,6 +19,7 @@ function ClientEdit() {
     handleAddCar,
     handleRemoveCar,
     handleSubmitUpdateClient,
+    handlePowerChange,
   } = useClient();
 
   const { id: clientID } = useParams();
@@ -45,29 +47,28 @@ function ClientEdit() {
   };
 
   return (
-    <div>
-      <h2>
-        Edit Client <button onClick={handleDeleteClient}>Delete</button>
+    <div className="from-client-container">
+      <h2 className="title text-center mb-3">
+        Edit Client <button className="btn btn-danger" onClick={handleDeleteClient}>Delete</button>
       </h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form-client">
         <ClientFieldset
           formData={clientData}
           handleClientChange={handleClientChange}
           handleAddCar={handleAddCar}
         />
-        <div className="container-car-fieldset">
           {carsList.map((car, index) => (
             <CarFieldset
               key={index}
               index={index}
               carData={car}
               handleRemoveCar={() => handleRemoveCar(index)}
-              onChange={(e) => handleCarChange(e, index)}
+              handleCarChange={(e) => handleCarChange(e, index)}
+              handlePowerChange={(e) => handlePowerChange(e, index)}
             />
           ))}
-        </div>
-        <button type="submit">Update Client</button>
-        <button type="button" onClick={() => navigate(`/client/${clientID}`)}>
+        <button type="submit" className="btn btn-primary btn-block">Update Client</button>
+        <button type="button" className="btn btn-secondary btn-block" onClick={() => navigate(`/client/${clientID}`)}>
           Cancel edit
         </button>
       </form>

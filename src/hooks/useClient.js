@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { addClient, checkDuplicateEmail, updateClient, getClient } from "../services/clients";
+import { horsepowerToKilowatts, validateCarForm, validateClientForm } from "../utils/validation";
 
 const defaultClientData = {
   firstName: "",
@@ -37,6 +38,14 @@ export const useClient = () => {
     setCarsList(updatedCarsData);
   };
 
+  const handlePowerChange = (e, index) => {
+    const { name, value } = e.target;
+    const updatedCarsData = carsList.map((car, i) =>
+      i === index ? { ...car, [name]: value, kilowatts: horsepowerToKilowatts(value) } : car
+    );
+    setCarsList(updatedCarsData);
+  };
+
   const handleAddCar = () => {
     const lastCar = carsList[carsList.length - 1];
     const allValuesNotEmpty = Object.values(lastCar).every((value) => value !== "");
@@ -70,11 +79,25 @@ export const useClient = () => {
 
   const handleSubmitAddClient = async () => {
     try {
-      const isDuplicate = await checkDuplicateEmail(clientData.email);
-      if (isDuplicate) {
-        window.alert("Email address is already registered.");
+      // const isDuplicate = await checkDuplicateEmail(clientData.email);
+      // if (isDuplicate) {
+      //   window.alert("Email address is already registered.");
+      //   return;
+      // }
+      const validateClient = validateClientForm(clientData);
+      if (validateClient.isValid === false) {
+        window.alert(validateClient.message);
         return;
       }
+
+      for (let car of carsList) {
+        let validateCar = validateCarForm(car);
+        if (validateCar.isValid === false) {
+          window.alert(validateCar.message);
+          return;
+        }
+      }
+
       const formData = { ...clientData, cars: carsList };
       await addClient(formData);
       setClientData(defaultClientData);
@@ -109,5 +132,6 @@ export const useClient = () => {
     handleGetClient,
     handleSubmitAddClient,
     handleSubmitUpdateClient,
+    handlePowerChange,
   };
 };
