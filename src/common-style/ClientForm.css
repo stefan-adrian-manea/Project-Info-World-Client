@@ -1,0 +1,18 @@
+.from-client-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+}
+
+.form-client{
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  gap: 1rem;
+}
+
+.form-client .card{
+  padding: 2rem;
+}
+

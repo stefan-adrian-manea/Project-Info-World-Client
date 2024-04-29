@@ -1,115 +1,108 @@
-function CarFieldset({ carData, onChange }) {
-    
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    onChange({ ...carData, [name]: value });
-  };
+import { horsepowerToKilowatts } from "../../utils/validation";
+import InputField from "../formComponents/InputField";
+import SelectField from "../formComponents/SelectField";
 
+function CarFieldset({ index, carData, handleRemoveCar, handleCarChange, handlePowerChange }) {
   return (
-    <div className="fieldset">
-      <h2>Informatii despre masina</h2>
-      <div>
-        <label htmlFor="make">Marca:</label>
-        <input
-          type="text"
+    <div className="card">
+      <div className="card-body">
+        <h3 className="text-center card-title">Car {index + 1} information</h3>
+        <InputField
           id="make"
           name="make"
+          label="Make"
+          type="text"
           value={carData.make}
-          onChange={handleChange}
+          onChange={handleCarChange}
           required
         />
-      </div>
-      <div>
-        <label htmlFor="model">Model:</label>
-        <input
-          type="text"
+        <InputField
           id="model"
           name="model"
+          label="Model"
+          type="text"
           value={carData.model}
-          onChange={handleChange}
+          onChange={handleCarChange}
           required
         />
-      </div>
-      <div>
-        <label htmlFor="year">An fabricatie:</label>
-        <input
-          type="number"
+        <InputField
           id="year"
           name="year"
+          label="Year"
+          type="number"
           value={carData.year}
-          onChange={handleChange}
+          onChange={handleCarChange}
           required
         />
-      </div>
-      <div>
-        <label htmlFor="engineType">Tip motorizare:</label>
-        <select
+        <SelectField
           id="engineType"
           name="engineType"
+          label="Engine Type"
           value={carData.engineType}
-          onChange={handleChange}
+          onChange={handleCarChange}
           required
-        >
-          <option value="Diesel">Diesel</option>
-          <option value="Benzina">Benzina</option>
-          <option value="Hibrid">Hibrid</option>
-          <option value="Electric">Electric</option>
-        </select>
-      </div>
-      <div>
-        <label htmlFor="engineCapacity">Capacitate motor:</label>
-        <input
-          type="number"
+          options={[
+            { value: "", label: "Select engine type" },
+            { value: "diesel", label: "Diesel" },
+            { value: "gasoline", label: "Gasoline" },
+            { value: "hybrid", label: "Hybrid" },
+            { value: "electric", label: "Electric" },
+          ]}
+        />
+
+        <InputField
           id="engineCapacity"
           name="engineCapacity"
+          label="Engine Capacity"
+          type="number"
           value={carData.engineCapacity}
-          onChange={handleChange}
+          onChange={handleCarChange}
           required
         />
-      </div>
-      <div>
-        <label htmlFor="horsepower">Cai putere:</label>
-        <input
-          type="number"
+
+        <InputField
           id="horsepower"
           name="horsepower"
+          label="Horsepower"
+          type="number"
           value={carData.horsepower}
-          onChange={handleChange}
+          onChange={handlePowerChange}
           required
         />
-      </div>
-      <div>
-        <label htmlFor="kilowatts">kW putere:</label>
-        <input
-          type="number"
+
+        <InputField
           id="kilowatts"
           name="kilowatts"
-          value={carData.kilowatts}
-          onChange={handleChange}
+          label="kW Power"
+          type="number"
+          value={horsepowerToKilowatts(carData.horsepower)}
           required
+          readOnly
         />
-      </div>
-      <div>
-        <label htmlFor="registrationNumber">Numar inmatriculare:</label>
-        <input
-          type="text"
+
+        <InputField
           id="registrationNumber"
           name="registrationNumber"
+          label="Registration Number"
+          type="text"
           value={carData.registrationNumber}
-          onChange={handleChange}
+          onChange={handleCarChange}
           required
         />
-      </div>
-      <div>
-        <label htmlFor="chassisNumber">Serie sasiu:</label>
-        <input
-          type="text"
+
+        <InputField
           id="chassisNumber"
           name="chassisNumber"
+          label="Chassis Number"
+          type="text"
           value={carData.chassisNumber}
-          onChange={handleChange}
+          onChange={handleCarChange}
           required
         />
+
+        <button type="button" className="btn btn-danger btn-block" onClick={handleRemoveCar}>
+          Delete Car
+        </button>
       </div>
     </div>
   );

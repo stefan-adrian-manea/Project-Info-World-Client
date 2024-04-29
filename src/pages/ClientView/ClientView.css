@@ -1,0 +1,15 @@
+.container.client-view-container{
+  width: 80%;
+  padding: 2rem;
+  gap: 1rem;
+}
+
+.client-view-container .card{
+  text-align: center;
+  width: 50%;
+}
+
+.appointments-container .table tr:hover {
+  background-color: #ddd;
+  cursor: pointer;
+}

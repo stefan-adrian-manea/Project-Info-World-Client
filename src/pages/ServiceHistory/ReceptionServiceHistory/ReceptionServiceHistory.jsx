@@ -1,121 +1,103 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
-import { addReceptionServiceHistory, getAppointment } from "../../../services/appointments";
+import { useAppointmentService } from "../../../context/AppointmentServiceContext/AppointmentServiceContext";
 
-const defaultFormState = {
-  serviceType: "",
-  isScratched: false,
-  isDamaged: false,
-  scratchedLocation: "",
-  damageLocation: "",
-  mentionedProblems: "",
-};
+import TextareaField from "../../../components/formComponents/TextareaField";
+import SelectField from "../../../components/formComponents/SelectField";
+import InputField from "../../../components/formComponents/InputField";
 
 function ReceptionServiceHistory() {
+  const {
+    receptionServiceHistory,
+    handleReceptionFormSubmission,
+    handleChangeReception,
+  } = useAppointmentService();
+
   const { id: appointmentID } = useParams();
   const navigate = useNavigate();
-  
-  const [receptionServiceHistory, setReceptionServiceHistory] = useState(defaultFormState);
-  const [appointmentData, setAppointmentData] = useState(null);
 
-  useEffect(() => {
-    async function fetchAppointmentData() {
-      try {
-        const currentAppointmentData = await getAppointment(appointmentID);
-        setAppointmentData(currentAppointmentData);
-      } catch (error) {
-        console.error("Error fetching appointment data:", error);
-      }
-    }
-    fetchAppointmentData();
-  }, [appointmentID]);
-
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    const newValue = type === "checkbox" ? checked : value;
-    setReceptionServiceHistory({ ...receptionServiceHistory, [name]: newValue });
-  };
-
-  const handleForm = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    addReceptionServiceHistory(appointmentID, { ...appointmentData, receptionServiceHistory });
-    setReceptionServiceHistory(defaultFormState);
-    navigate(-1);
+    handleReceptionFormSubmission(appointmentID, receptionServiceHistory).then(() => navigate(-1));
   };
 
   return (
-    <div>
+    <div className="container mt-4">
       <h3>Reception History</h3>
-      <form onSubmit={handleForm}>
-        <div>
-          <label htmlFor="serviceType">Service Type:</label>
-          <select
+      <form onSubmit={handleSubmit}>
+        <div className="mb-3">
+          <SelectField
             id="serviceType"
             name="serviceType"
+            label="Service Type"
             value={receptionServiceHistory.serviceType}
-            onChange={handleChange}
-          >
-            <option value="">Select service type</option>
-            <option value="revision">Revision</option>
-            <option value="verification">Verification</option>
-          </select>
+            onChange={handleChangeReception}
+            options={[
+              { value: "", label: "Select service type" },
+              { value: "revision", label: "Revision" },
+              { value: "verification", label: "Verification" },
+            ]}
+            required
+          />
         </div>
-        <div>
-          <label htmlFor="isScratched">Scratched:</label>
-          <input
-            type="checkbox"
+        <div className="mb-3">
+          <InputField
             id="isScratched"
             name="isScratched"
+            label="Scratched"
+            type="checkbox"
             checked={receptionServiceHistory.isScratched}
-            onChange={handleChange}
+            onChange={handleChangeReception}
           />
         </div>
         {receptionServiceHistory.isScratched && (
-          <div>
-            <label htmlFor="scratchedLocation">Scratched Location:</label>
-            <input
-              type="text"
+          <div className="mb-3">
+            <InputField
               id="scratchedLocation"
               name="scratchedLocation"
+              label="Scratched Location"
+              type="text"
               value={receptionServiceHistory.scratchedLocation}
-              onChange={handleChange}
+              onChange={handleChangeReception}
+              required
             />
           </div>
         )}
-        <div>
-          <label htmlFor="isDamaged">Damaged:</label>
-          <input
-            type="checkbox"
+        <div className="mb-3">
+          <InputField
             id="isDamaged"
             name="isDamaged"
+            label="Damaged"
+            type="checkbox"
             checked={receptionServiceHistory.isDamaged}
-            onChange={handleChange}
+            onChange={handleChangeReception}
           />
         </div>
         {receptionServiceHistory.isDamaged && (
-          <div>
-            <label htmlFor="damageLocation">Damage Location:</label>
-            <input
-              type="text"
+          <div className="mb-3">
+            <InputField
               id="damageLocation"
               name="damageLocation"
+              label="Damage Location"
+              type="text"
               value={receptionServiceHistory.damageLocation}
-              onChange={handleChange}
+              onChange={handleChangeReception}
+              required
             />
           </div>
         )}
-        <div>
-          <label htmlFor="mentionedProblems">Mentioned Problems:</label>
-          <textarea
+        <div className="mb-3">
+          <TextareaField
             id="mentionedProblems"
             name="mentionedProblems"
+            label="Mentioned Problems"
             value={receptionServiceHistory.mentionedProblems}
-            onChange={handleChange}
+            onChange={handleChangeReception}
           />
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
       </form>
     </div>
   );

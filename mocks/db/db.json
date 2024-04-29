@@ -1,110 +1,285 @@
 {
   "clients": [
     {
-      "id": "5cd6",
-      "firstName": "assas",
-      "lastName": "aaa",
-      "email": "aaa@aa.co",
-      "phoneNumber": "12345678",
+      "firstName": "Johnnnn",
+      "lastName": "Doe",
+      "email": "johndoe@example.com",
+      "phoneNumber": "+1234567890",
+      "id": "8d52",
       "cars": [
         {
-          "make": "aaa11111111",
-          "model": "asdasd",
-          "year": "1999",
-          "engineType": "",
-          "engineCapacity": "1111",
-          "horsepower": "1111",
-          "kilowatts": "111",
-          "registrationNumber": "111",
-          "chassisNumber": "1111"
-        }
-      ]
-    },
-    {
-      "id": "e401",
-      "firstName": "AAAAAAAAAAAAAAAAAAAAAAAAA",
-      "lastName": "Adrian",
-      "email": "a@s.com",
-      "phoneNumber": "12345678",
-      "cars": [
-        {
-          "make": "aaa",
-          "model": "aaa",
-          "year": "2000",
-          "engineType": "",
-          "engineCapacity": "111",
-          "horsepower": "111",
-          "kilowatts": "111",
-          "registrationNumber": "111",
-          "chassisNumber": "1111"
+          "make": "Toyota",
+          "model": "Corolla",
+          "year": "2018",
+          "engineType": "diesel",
+          "engineCapacity": "1.8",
+          "horsepower": "140",
+          "kilowatts": "104",
+          "registrationNumber": "ABC123",
+          "chassisNumber": "1234567890"
         },
         {
-          "make": "aaa",
-          "model": "vvv",
-          "year": "2024",
-          "engineType": "Benzina",
-          "engineCapacity": "11111",
-          "horsepower": "111",
-          "kilowatts": "1",
-          "registrationNumber": "1",
-          "chassisNumber": "1"
+          "make": "Honda",
+          "model": "Civic",
+          "year": "2020",
+          "engineType": "gasoline",
+          "engineCapacity": "2.0",
+          "horsepower": "160",
+          "kilowatts": "119",
+          "registrationNumber": "DEF456",
+          "chassisNumber": "0987654321"
         }
       ]
     },
     {
-      "id": "3335",
-      "firstName": "Client",
-      "lastName": "client",
-      "email": "email.client@co",
-      "phoneNumber": "12345678",
+      "id": "6f91",
+      "firstName": "Alice",
+      "lastName": "Smith",
+      "email": "alice.smith@example.com",
+      "phoneNumber": "+1987654321",
       "cars": [
         {
-          "make": "Marca",
-          "model": "Model",
-          "year": "2000",
-          "engineType": "Benzina",
-          "engineCapacity": "2000",
+          "make": "Ford",
+          "model": "Focus",
+          "year": "2019",
+          "engineType": "gasoline",
+          "engineCapacity": "1.6",
           "horsepower": "120",
-          "kilowatts": "120",
-          "registrationNumber": "12313212",
-          "chassisNumber": "212121"
+          "kilowatts": "89",
+          "registrationNumber": "XYZ789",
+          "chassisNumber": "9876543210"
+        },
+        {
+          "make": "Chevrolet",
+          "model": "Cruze",
+          "year": "2017",
+          "engineType": "gasoline",
+          "engineCapacity": "1.4",
+          "horsepower": "150",
+          "kilowatts": "112",
+          "registrationNumber": "GHI987",
+          "chassisNumber": "0123456789"
+        }
+      ]
+    },
+    {
+      "id": "3b78",
+      "firstName": "Emily",
+      "lastName": "Johnson",
+      "email": "emily.johnson@example.com",
+      "phoneNumber": "+1654321879",
+      "cars": [
+        {
+          "make": "Volkswagen",
+          "model": "Golf",
+          "year": "2020",
+          "engineType": "gasoline",
+          "engineCapacity": "1.8",
+          "horsepower": "150",
+          "kilowatts": "112",
+          "registrationNumber": "JKL456",
+          "chassisNumber": "5678901234"
+        },
+        {
+          "make": "BMW",
+          "model": "3 Series",
+          "year": "2016",
+          "engineType": "gasoline",
+          "engineCapacity": "2.0",
+          "horsepower": "180",
+          "kilowatts": "134",
+          "registrationNumber": "MNO123",
+          "chassisNumber": "3456789012"
+        }
+      ]
+    },
+    {
+      "id": "1a45",
+      "firstName": "Michael",
+      "lastName": "Brown",
+      "email": "michael.brown@example.com",
+      "phoneNumber": "+1789456123",
+      "cars": [
+        {
+          "make": "Audi",
+          "model": "A4",
+          "year": "2017",
+          "engineType": "gasoline",
+          "engineCapacity": "2.0",
+          "horsepower": "190",
+          "kilowatts": "142",
+          "registrationNumber": "PQR789",
+          "chassisNumber": "4567890123"
+        },
+        {
+          "make": "Mercedes-Benz",
+          "model": "C-Class",
+          "year": "2019",
+          "engineType": "gasoline",
+          "engineCapacity": "2.2",
+          "horsepower": "170",
+          "kilowatts": "127",
+          "registrationNumber": "STU456",
+          "chassisNumber": "2345678901"
+        }
+      ]
+    },
+    {
+      "id": "9c23",
+      "firstName": "Sophia",
+      "lastName": "Miller",
+      "email": "sophia.miller@example.com",
+      "phoneNumber": "+1876543210",
+      "cars": [
+        {
+          "make": "Hyundai",
+          "model": "Elantra",
+          "year": "2018",
+          "engineType": "gasoline",
+          "engineCapacity": "1.6",
+          "horsepower": "130",
+          "kilowatts": "97",
+          "registrationNumber": "VWX234",
+          "chassisNumber": "6789012345"
+        },
+        {
+          "make": "Kia",
+          "model": "Sorento",
+          "year": "2021",
+          "engineType": "gasoline",
+          "engineCapacity": "2.4",
+          "horsepower": "185",
+          "kilowatts": "138",
+          "registrationNumber": "YZA567",
+          "chassisNumber": "4567890123"
+        }
+      ]
+    },
+    {
+      "firstName": "David",
+      "lastName": "Wilson",
+      "email": "david.wilson@example.com",
+      "phoneNumber": "+1543210987",
+      "id": "5e87",
+      "cars": [
+        {
+          "make": "Toyota",
+          "model": "Camry",
+          "year": "2020",
+          "engineType": "gasoline",
+          "engineCapacity": "2.5",
+          "horsepower": "200",
+          "kilowatts": "149",
+          "registrationNumber": "BCD345",
+          "chassisNumber": "8901234567"
         }
       ]
     }
   ],
   "appointments": [
     {
-      "id": "7c63",
-      "clientID": "5cd6",
-      "clientName": "assas aaa",
-      "car": "aaa11111111 asdasd (1999)",
-      "action": "aasa",
-      "contact": "Email: aaa@aa.co",
+      "id": "217c",
+      "clientID": "5e87",
+      "clientName": "David Wilson",
+      "car": "Toyota Camry (2020)",
+      "action": "dsasdadsa",
+      "contact": "Email: david.wilson@example.com",
+      "interval": "11:30",
+      "receptionServiceHistory": {
+        "serviceType": "revision",
+        "isScratched": true,
+        "isDamaged": true,
+        "scratchedLocation": "sadads",
+        "damageLocation": "dadsdsaasd",
+        "mentionedProblems": "dsaadsdasdsa  as dsa dsd asda"
+      },
+      "processingServiceHistory": {
+        "partsChanged": "dasda",
+        "operations": "dassdasad",
+        "otherIssues": "dasda",
+        "repairedOtherIssues": true,
+        "repairDuration": "10",
+        "completed": true
+      }
+    },
+    {
+      "id": "3f8a",
+      "clientID": "1a23",
+      "clientName": "Emma Johnson",
+      "car": "BMW 3 Series (2021)",
+      "action": "lorem",
+      "contact": "Email: emma.johnson@example.com",
       "interval": "10:00",
       "receptionServiceHistory": {
         "serviceType": "revision",
         "isScratched": true,
         "isDamaged": true,
-        "scratchedLocation": "das",
-        "damageLocation": "dsadsa",
-        "mentionedProblems": "dasdas"
+        "scratchedLocation": "lorem",
+        "damageLocation": "ipsum",
+        "mentionedProblems": "dolor sit amet"
       },
       "processingServiceHistory": {
-        "partsChanged": "sadas",
-        "operations": "sdadsa",
-        "otherIssues": "dasdas",
+        "partsChanged": "lorem",
+        "operations": "ipsum",
+        "otherIssues": "dolor",
         "repairedOtherIssues": true,
-        "repairDuration": "40"
+        "repairDuration": "5",
+        "completed": true
       }
     },
     {
-      "id": "1ee9",
-      "clientID": "3335",
-      "clientName": "Client client",
-      "car": "Marca Model (2000)",
-      "action": "Actiune\nActiune",
-      "contact": "Tel: 12345678",
-      "interval": "17:00",
+      "id": "7b2d",
+      "clientID": "4b56",
+      "clientName": "Michael Brown",
+      "car": "Mercedes-Benz C-Class (2018)",
+      "action": "lorem",
+      "contact": "Email: michael.brown@example.com",
+      "interval": "14:00"
+    },
+    {
+      "id": "8c1e",
+      "clientID": "7c89",
+      "clientName": "Sophia Williams",
+      "car": "Volvo S60 (2019)",
+      "action": "lorem",
+      "contact": "Email: sophia.williams@example.com",
+      "interval": "15:30"
+    },
+    {
+      "id": "9d4f",
+      "clientID": "0d12",
+      "clientName": "James Jones",
+      "car": "Tesla Model 3 (2020)",
+      "action": "lorem",
+      "contact": "Email: james.jones@example.com",
+      "interval": "09:00"
+    },
+    {
+      "id": "6a9b",
+      "clientID": "3e45",
+      "clientName": "Olivia Davis",
+      "car": "Jeep Wrangler (2022)",
+      "action": "lorem",
+      "contact": "Email: olivia.davis@example.com",
+      "interval": "13:00"
+    },
+    {
+      "id": "7cf8",
+      "clientID": "5e87",
+      "clientName": "David Wilson",
+      "car": "Toyota Camry (2020)",
+      "action": "asdasda",
+      "contact": "Email: david.wilson@example.com",
+      "interval": "11:00"
+    },
+    {
+      "id": "7315",
+      "clientID": "5e87",
+      "clientName": "David Wilson",
+      "car": "Toyota Camry (2020)",
+      "action": "asdasd",
+      "contact": "Email: david.wilson@example.com",
+      "interval": "10:00",
       "receptionServiceHistory": {
         "serviceType": "revision",
         "isScratched": false,
@@ -112,13 +287,6 @@
         "scratchedLocation": "",
         "damageLocation": "",
         "mentionedProblems": ""
-      },
-      "processingServiceHistory": {
-        "partsChanged": "sasa",
-        "operations": "sasaas",
-        "otherIssues": "",
-        "repairedOtherIssues": false,
-        "repairDuration": "130"
       }
     }
   ]

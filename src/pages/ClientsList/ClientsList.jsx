@@ -1,68 +1,37 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { getClients, deleteClient } from "../../services/clients";
+import { getClients } from "../../services/clients";
 
-import "./ClientsList.css";
-function ClientList() {
+import SearchBar from "../../components/SearchBar/SearchBar";
+import ClientsTable from "../../components/ClientsTable/ClientsTable";
+
+function ClientsList() {
   const [clients, setClients] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    async function fetchClients() {
+    async function getClientsList() {
       try {
-        const fetchedClients = await getClients();
-        setClients(fetchedClients);
+        const clientsList = await getClients();
+        setClients(clientsList.reverse());
       } catch (error) {
         console.error(error);
       }
     }
-    fetchClients();
+    getClientsList();
   }, []);
 
-  const handleDeleteClient = async (clientId) => {
-    try {
-      await deleteClient(clientId);
-      const updatedClients = clients.filter((client) => client.id !== clientId);
-      setClients(updatedClients);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const filteredClients = clients.filter((client) => {
+    const name = client.firstName + client.lastName;
+    return name.toLowerCase().includes(searchTerm.toLowerCase());
+  });
 
   return (
-    <div className="client-list-container">
-      <h2>Lista de clienti</h2>
-      <table className="client-list-table">
-        <thead>
-          <tr>
-            <th>Nume</th>
-            <th>Prenume</th>
-            <th>Email</th>
-            <th>Numar de telefon</th>
-            <th>Actiuni</th>
-          </tr>
-        </thead>
-        <tbody>
-          {clients.map((client, index) => (
-            <tr key={index}>
-              <td>{client.lastName}</td>
-              <td>{client.firstName}</td>
-              <td>{client.email}</td>
-              <td>{client.phoneNumber}</td>
-              <td>
-                <Link to={`/appointment/${client.id}`}>
-                  <button>Programare</button>
-                </Link>
-                <Link to={`/client-edit/${client.id}`}>
-                  <button>Editare</button>
-                </Link>
-                <button onClick={() => handleDeleteClient(client.id)}>Sterge</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="client-list table-container">
+      <h2>Clients List</h2>
+      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      <ClientsTable clientsList={filteredClients} />
     </div>
   );
 }
 
-export default ClientList;
+export default ClientsList;

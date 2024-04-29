@@ -1,113 +1,88 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
-import { getAppointment, addProcessingServiceHistory } from "../../../services/appointments";
+import { useAppointmentService } from "../../../context/AppointmentServiceContext/AppointmentServiceContext";
 
-const defaultForm = {
-  partsChanged: "",
-  operations: "",
-  otherIssues: "",
-  repairedOtherIssues: false,
-  repairDuration: "",
-};
+import TextareaField from "../../../components/formComponents/TextareaField";
+import InputField from "../../../components/formComponents/InputField";
+import { isValidRepairDuration } from "../../../utils/validation";
 
 function ProcessingServiceHistory() {
-  const [processingServiceHistory, setProcessingServiceHistory] = useState(defaultForm);
+  const { processingServiceHistory, handleProcessingFormSubmission, handleChangeProcessing } =
+    useAppointmentService();
+
   const { id: appointmentID } = useParams();
-  const [appointmentData, setAppointmentData] = useState(null);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    async function fetchAppointmentData() {
-      try {
-        const currentAppointmentData = await getAppointment(appointmentID);
-        setAppointmentData(currentAppointmentData);
-      } catch (error) {
-        console.error("Error fetching appointment data:", error);
-      }
-    }
-    fetchAppointmentData();
-  }, [appointmentID]);
-
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    const newValue = type === "checkbox" ? checked : value;
-    setProcessingServiceHistory({ ...processingServiceHistory, [name]: newValue });
-  };
 
   const handleForm = async (e) => {
     e.preventDefault();
-    try {
-      await addProcessingServiceHistory(appointmentID, {
-        ...appointmentData,
-        processingServiceHistory: processingServiceHistory,
-      });
-      setProcessingServiceHistory(defaultForm);
-    } catch (error) {
-      console.error("Error adding processing history:", error);
+    const validRepairDuration = isValidRepairDuration(processingServiceHistory.repairDuration);
+    if (validRepairDuration.isValid === false) {
+      window.alert(validRepairDuration.message);
+      return;
     }
-    navigate(-1);
+    handleProcessingFormSubmission(appointmentID).then(() => navigate(-1));
   };
 
   return (
-    <div>
+    <div className="container mt-4">
       <h3>Processing History</h3>
       <form onSubmit={handleForm}>
-        <div>
-          <label htmlFor="partsChanged">Parts Changed:</label>
-          <input
-            type="text"
+        <div className="mb-3">
+          <InputField
             id="partsChanged"
             name="partsChanged"
+            label="Parts Changed"
+            type="text"
             value={processingServiceHistory.partsChanged}
-            onChange={handleChange}
+            onChange={handleChangeProcessing}
             required
           />
         </div>
-        <div>
-          <label htmlFor="operations">Operations Performed:</label>
-          <textarea
+        <div className="mb-3">
+          <TextareaField
             id="operations"
             name="operations"
+            label="Operations Performed"
             value={processingServiceHistory.operations}
-            onChange={handleChange}
+            onChange={handleChangeProcessing}
             required
           />
         </div>
-        <div>
-          <label htmlFor="otherIssues">Other Issues Detected:</label>
-          <textarea
+        <div className="mb-3">
+          <TextareaField
             id="otherIssues"
             name="otherIssues"
+            label="Other Issues Detected"
             value={processingServiceHistory.otherIssues}
-            onChange={handleChange}
+            onChange={handleChangeProcessing}
           />
         </div>
-        <div>
-          <label htmlFor="repairedOtherIssues">Repaired Other Issues:</label>
-          <input
-            type="checkbox"
+        <div className="mb-3 form-check">
+          <InputField
             id="repairedOtherIssues"
             name="repairedOtherIssues"
+            label="Repaired Other Issues"
+            type="checkbox"
             checked={processingServiceHistory.repairedOtherIssues}
-            onChange={handleChange}
+            onChange={handleChangeProcessing}
           />
         </div>
-        <div>
-          <label htmlFor="repairDuration">Repair Duration (minutes):</label>
-          <input
-            type="number"
+        <div className="mb-3">
+          <InputField
             id="repairDuration"
             name="repairDuration"
+            label="Repair Duration (minutes)"
+            type="number"
             value={processingServiceHistory.repairDuration}
-            onChange={handleChange}
+            onChange={handleChangeProcessing}
             required
             step="10"
             min="0"
           />
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
       </form>
     </div>
   );

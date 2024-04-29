@@ -1,50 +1,49 @@
-function ClientFieldset({ formData, onChange }) {
+import InputField from "../formComponents/InputField";
+
+function ClientFieldset({ formData, handleClientChange, handleAddCar }) {
   return (
-    <div className="fieldset">
-      <h2>Informatii despre client</h2>
-      <div>
-        <label htmlFor="firstName">Prenume:</label>
-        <input
-          type="text"
+    <div className="card">
+      <div className="card-body">
+        <h3 className="text-center card-title">Client information</h3>
+        <InputField
           id="firstName"
           name="firstName"
+          label="First Name"
+          type="text"
           value={formData.firstName}
-          onChange={onChange}
+          onChange={handleClientChange}
           required
         />
-      </div>
-      <div>
-        <label htmlFor="lastName">Nume:</label>
-        <input
-          type="text"
+        <InputField
           id="lastName"
           name="lastName"
+          label="Last Name"
+          type="text"
           value={formData.lastName}
-          onChange={onChange}
+          onChange={handleClientChange}
           required
         />
-      </div>
-      <div>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
+        <InputField
           id="email"
           name="email"
+          label="Email"
+          type="email"
           value={formData.email}
-          onChange={onChange}
+          onChange={handleClientChange}
           required
         />
-      </div>
-      <div>
-        <label htmlFor="phoneNumber">Numar de telefon:</label>
-        <input
-          type="tel"
+        <InputField
           id="phoneNumber"
           name="phoneNumber"
+          label="Phone Number"
+          type="tel"
           value={formData.phoneNumber}
-          onChange={onChange}
+          onChange={handleClientChange}
           required
         />
+          <button type="button" className="btn btn-primary btn-block" onClick={handleAddCar}>
+            Add new car
+          </button>
       </div>
     </div>
   );
