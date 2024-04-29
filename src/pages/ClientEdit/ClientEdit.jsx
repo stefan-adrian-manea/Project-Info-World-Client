@@ -42,7 +42,9 @@ function ClientEdit() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleSubmitUpdateClient(clientID).then(() => navigate(`/client/${clientID}`));
+    handleSubmitUpdateClient(clientID).then((res) => {
+      res && navigate(`/client/${clientID}`);
+    });
   };
 
   return (

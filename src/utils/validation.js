@@ -60,7 +60,7 @@ const isValidPower = (power) => {
 
 const isValidYear = (year) => {
   const yearRegex = /^(?!0)\d{4}$/;
-  return yearRegex.test(year);
+  return yearRegex.test(year) && parseInt(year) <= 2024;
 };
 
 const isValidRegistrationNumber = (registrationNumber) => {

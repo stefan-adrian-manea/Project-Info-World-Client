@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { addClient, checkDuplicateEmail, updateClient, getClient } from "../services/clients";
+import { addClient, updateClient, getClient } from "../services/clients";
 import { horsepowerToKilowatts, validateCarForm, validateClientForm } from "../utils/validation";
 
 const defaultClientData = {
@@ -79,11 +79,6 @@ export const useClient = () => {
 
   const handleSubmitAddClient = async () => {
     try {
-      // const isDuplicate = await checkDuplicateEmail(client.email);
-      // if (isDuplicate) {
-      //   window.alert("Email address is already registered.");
-      //   return;
-      // }
       const validateClient = validateClientForm(client);
       if (validateClient.isValid === false) {
         window.alert(validateClient.message);
@@ -108,11 +103,25 @@ export const useClient = () => {
   };
 
   const handleSubmitUpdateClient = async (clientID) => {
+    const validateClient = validateClientForm(client);
+    if (validateClient.isValid === false) {
+      window.alert(validateClient.message);
+      return false;
+    }
+
+    for (let car of carsList) {
+      let validateCar = validateCarForm(car);
+      if (validateCar.isValid === false) {
+        window.alert(validateCar.message);
+        return false;
+      }
+    }
     const formData = { ...client, cars: carsList };
     try {
       await updateClient(clientID, formData);
       setClient(defaultClientData);
       setCarsList([defaultCarData]);
+      return true;
     } catch (error) {
       console.error(error);
     }

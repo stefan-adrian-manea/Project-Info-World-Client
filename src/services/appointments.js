@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:4000/appointments";
+const API_URL = "http://localhost:4000/appointments"; // json-server --watch db.json --port 4000
+// const API_URL = "http://localhost:4001/appointments"; // api from : https://github.com/stefann9/Project-Info-World-server
 
 export const getAppointment = async (appointmentId) => {
   try {
