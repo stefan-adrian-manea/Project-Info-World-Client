@@ -1,0 +1,33 @@
+.buttons-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  width: 80%;
+  height: 50vh;
+  margin: auto;
+  margin-top: 5vh;
+}
+
+.button {
+  background-color: #1e89fb;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.double-width {
+  grid-column: span 2;
+}
+
+.title{
+  text-align: center;
+  margin-top: 5vh;
+}
