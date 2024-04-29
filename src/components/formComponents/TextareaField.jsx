@@ -1,11 +1,18 @@
 function TextareaField({ id, name, label, value, onChange, required }) {
   return (
     <div>
-      <label htmlFor={id}>
+      <label htmlFor={id} className="form-label">
         {label}
-        {required ? "*" : ""}:
+        {required && <span className="text-danger">*</span>}:
       </label>
-      <textarea id={id} name={name} value={value} onChange={onChange} required={required} />
+      <textarea
+        id={id}
+        name={name}
+        value={value}
+        onChange={onChange}
+        required={required}
+        className="form-control"
+      />
     </div>
   );
 }

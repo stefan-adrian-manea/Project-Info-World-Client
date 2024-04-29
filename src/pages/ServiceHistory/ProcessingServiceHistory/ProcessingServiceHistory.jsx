@@ -15,8 +15,8 @@ function ProcessingServiceHistory() {
 
   const handleForm = async (e) => {
     e.preventDefault();
-    const validRepairDuration =  isValidRepairDuration(processingServiceHistory.repairDuration);
-    if(validRepairDuration.isValid === false){
+    const validRepairDuration = isValidRepairDuration(processingServiceHistory.repairDuration);
+    if (validRepairDuration.isValid === false) {
       window.alert(validRepairDuration.message);
       return;
     }

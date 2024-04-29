@@ -1,9 +1,9 @@
 function InputField({ id, name, label, type, value, onChange, required, ...otherProps }) {
   return (
-    <div className="mb-3">
+    <div>
       <label htmlFor={id} className="form-label">
         {label}
-        {required ? "*" : ""}:
+        {required && <span className="text-danger">*</span>}:
       </label>
       <input
         type={type}
