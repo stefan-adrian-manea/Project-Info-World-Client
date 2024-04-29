@@ -1,21 +1,15 @@
 .from-client-container{
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
-  /* border: 1px solid black; */
   margin: 1rem;
 }
-
 
 .form-client{
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   width: 60%;
   gap: 1rem;
-
-  /* border: 1px solid black; */
 }
 
 .form-client .card{

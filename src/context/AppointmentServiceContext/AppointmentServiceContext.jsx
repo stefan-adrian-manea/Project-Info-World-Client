@@ -1,9 +1,6 @@
 import { createContext, useContext, useState } from "react";
 
-import {
-  addReceptionServiceHistory,
-  addProcessingServiceHistory,
-} from "../../services/appointments";
+import { updateAppointment, addProcessingServiceHistory } from "../../services/appointments";
 
 const AppointmentServiceContext = createContext();
 
@@ -16,14 +13,14 @@ const defaultFormReception = {
   scratchedLocation: "",
   damageLocation: "",
   mentionedProblems: "",
-}
+};
 const defaultFormProcessing = {
   partsChanged: "",
   operations: "",
   otherIssues: "",
   repairedOtherIssues: false,
   repairDuration: "",
-}
+};
 export const AppointmentServiceProvider = ({ children }) => {
   const [appointmentData, setAppointmentData] = useState({});
   const [receptionServiceHistory, setReceptionServiceHistory] = useState(defaultFormReception);
@@ -31,7 +28,7 @@ export const AppointmentServiceProvider = ({ children }) => {
 
   const handleReceptionFormSubmission = async (appointmentID) => {
     try {
-      await addReceptionServiceHistory(appointmentID, {
+      await updateAppointment(appointmentID, {
         ...appointmentData,
         receptionServiceHistory,
       });
@@ -43,7 +40,7 @@ export const AppointmentServiceProvider = ({ children }) => {
 
   const handleProcessingFormSubmission = async (appointmentID) => {
     try {
-      await addProcessingServiceHistory(appointmentID, {
+      await updateAppointment(appointmentID, {
         ...appointmentData,
         processingServiceHistory,
       });
@@ -52,26 +49,19 @@ export const AppointmentServiceProvider = ({ children }) => {
     }
     resetProcessingForm();
   };
+  const resetReceptionForm = () => setReceptionServiceHistory(defaultFormReception);
+  const resetProcessingForm = () => setProcessingServiceHistory(defaultFormProcessing);
+  
 
-  const resetReceptionForm = () => {
-    setReceptionServiceHistory(defaultFormReception);
-  };
-
-  const resetProcessingForm = () => {
-    setProcessingServiceHistory(defaultFormProcessing);
-  };
-
-  const handleChangeReception = (e) => {
-    const { name, value, type, checked } = e.target;
+  const handleChange = (event, setStateFunction) => {
+    const { name, value, type, checked } = event.target;
     const newValue = type === "checkbox" ? checked : value;
-    setReceptionServiceHistory((prevState) => ({ ...prevState, [name]: newValue }));
+    setStateFunction((prevState) => ({ ...prevState, [name]: newValue }));
   };
 
-  const handleChangeProcessing = (e) => {
-    const { name, value, type, checked } = e.target;
-    const newValue = type === "checkbox" ? checked : value;
-    setProcessingServiceHistory({ ...processingServiceHistory, [name]: newValue });
-  };
+  const handleChangeReception = (e) => handleChange(e, setReceptionServiceHistory);
+
+  const handleChangeProcessing = (e) => handleChange(e, setProcessingServiceHistory);
 
   const contextValue = {
     setAppointmentData,
@@ -81,11 +71,13 @@ export const AppointmentServiceProvider = ({ children }) => {
     setReceptionServiceHistory,
     handleChangeReception,
     handleReceptionFormSubmission,
+    resetReceptionForm,
 
     processingServiceHistory,
     setProcessingServiceHistory,
     handleChangeProcessing,
     handleProcessingFormSubmission,
+    resetProcessingForm,
   };
 
   return (

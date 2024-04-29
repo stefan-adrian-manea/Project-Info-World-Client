@@ -1,11 +1,11 @@
-import { useClient } from "../../hooks/useClient";
+import { useClient } from "../../hooks/useClient.hook";
 import CarFieldset from "../../components/CarFieldset/CarFieldset";
 import ClientFieldset from "../../components/ClientFieldset/ClientFieldset";
 import "./ClientAdd.css";
 import "../../common-style/ClientForm.css"
 function ClientAdd() {
   const {
-    clientData,
+    client,
     carsList,
     handleClientChange,
     handleCarChange,
@@ -25,7 +25,7 @@ function ClientAdd() {
       <h2 className="title text-center mb-3">Add new client</h2>
       <form onSubmit={handleSubmit} className="form-client">
         <ClientFieldset
-          formData={clientData}
+          formData={client}
           handleClientChange={handleClientChange}
           handleAddCar={handleAddCar}
         />

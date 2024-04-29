@@ -22,12 +22,12 @@ const defaultCarData = {
 };
 
 export const useClient = () => {
-  const [clientData, setClientData] = useState(defaultClientData);
+  const [client, setClient] = useState(defaultClientData);
   const [carsList, setCarsList] = useState([defaultCarData]);
 
   const handleClientChange = (e) => {
     const { name, value } = e.target;
-    setClientData({ ...clientData, [name]: value });
+    setClient({ ...client, [name]: value });
   };
 
   const handleCarChange = (e, index) => {
@@ -69,8 +69,8 @@ export const useClient = () => {
 
   const handleGetClient = async (clientID) => {
     try {
-      const { firstName, lastName, email, phoneNumber, cars } = await getClient(clientID);
-      setClientData({ firstName, lastName, email, phoneNumber });
+      const { firstName, lastName, email, phoneNumber, cars, id } = await getClient(clientID);
+      setClient({ firstName, lastName, email, phoneNumber, id });
       setCarsList(cars);
     } catch (error) {
       console.error(error);
@@ -79,12 +79,12 @@ export const useClient = () => {
 
   const handleSubmitAddClient = async () => {
     try {
-      // const isDuplicate = await checkDuplicateEmail(clientData.email);
+      // const isDuplicate = await checkDuplicateEmail(client.email);
       // if (isDuplicate) {
       //   window.alert("Email address is already registered.");
       //   return;
       // }
-      const validateClient = validateClientForm(clientData);
+      const validateClient = validateClientForm(client);
       if (validateClient.isValid === false) {
         window.alert(validateClient.message);
         return;
@@ -98,9 +98,9 @@ export const useClient = () => {
         }
       }
 
-      const formData = { ...clientData, cars: carsList };
+      const formData = { ...client, cars: carsList };
       await addClient(formData);
-      setClientData(defaultClientData);
+      setClient(defaultClientData);
       setCarsList([defaultCarData]);
     } catch (error) {
       console.error(error);
@@ -108,10 +108,10 @@ export const useClient = () => {
   };
 
   const handleSubmitUpdateClient = async (clientID) => {
-    const formData = { ...clientData, cars: carsList };
+    const formData = { ...client, cars: carsList };
     try {
       await updateClient(clientID, formData);
-      setClientData(defaultClientData);
+      setClient(defaultClientData);
       setCarsList([defaultCarData]);
     } catch (error) {
       console.error(error);
@@ -121,8 +121,8 @@ export const useClient = () => {
   return {
     defaultClientData,
     defaultCarData,
-    clientData,
-    setClientData,
+    client,
+    setClient,
     carsList,
     setCarsList,
     handleClientChange,

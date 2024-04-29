@@ -1,28 +1,53 @@
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { useClient } from "../../hooks/useClient";
+import { useClient } from "../../hooks/useClient.hook";
+import { getAppointments } from "../../services/appointments";
+import AppointmentRow from "../../components/AppointmentRow/AppointmentRow";
 
-import CarCard from "../../components/CarCard/CarCard";
-import ClientCard from "../../components/ClientCard/ClientCard";
+import CarRow from "../../components/CarRow/CarRow";
+import ClientRow from "../../components/ClientRow/ClientRow";
+
+import "./ClientView.css";
+import ClientsTable from "../../components/ClientsTable/ClientsTable";
+import CarsTable from "../../components/CarsTable/CarsTable";
+import AppointmentsTable from "../../components/AppointmentsTable/AppointmentsTable";
 
 function ClientView() {
-  const { handleGetClient, clientData, carsList } = useClient();
+  const { handleGetClient, client, carsList } = useClient();
   const { id: clientID } = useParams();
+  const [clientAppointments, setClientAppointments] = useState([]);
 
   useEffect(() => {
     handleGetClient(clientID);
-  }, [clientID, clientData, carsList]);
+  }, [clientID]);
 
+  useEffect(() => {
+    async function getClientAppointments() {
+      try {
+        const appointmentsData = await getAppointments();
+        const filteredAppointments = appointmentsData.filter(
+          (appointment) => appointment.clientID === clientID
+        );
+        setClientAppointments(filteredAppointments);
+      } catch (error) {
+        console.error("Error fetching client appointments:", error);
+      }
+    }
+    getClientAppointments();
+  }, [clientID]);
   return (
-    <div>
-      <h2>
-        Client info <Link to={`/client/edit/${clientID}`}>Edit</Link>
-      </h2>
-      <ClientCard clientData={clientData} />
+    <div className="container client-view-container">
+      <h2>Client info</h2>
+      <ClientsTable clientsList={[client]} isEditing={true} />
       <h2>Cars</h2>
-      {carsList?.map((car, index) => (
-        <CarCard key={index} car={car} />
-      ))}
+      <CarsTable carsList={carsList} />
+
+      {clientAppointments.length !== 0 && (
+        <>
+          <h2>Appointments</h2>
+          <AppointmentsTable appointmentsList={clientAppointments} linkToAppointment={true} />
+        </>
+      )}
     </div>
   );
 }

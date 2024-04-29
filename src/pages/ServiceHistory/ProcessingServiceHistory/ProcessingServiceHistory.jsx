@@ -10,7 +10,7 @@ function ProcessingServiceHistory() {
   const { processingServiceHistory, handleProcessingFormSubmission, handleChangeProcessing } =
     useAppointmentService();
 
-    const { id: appointmentID } = useParams();
+  const { id: appointmentID } = useParams();
   const navigate = useNavigate();
 
   const handleForm = async (e) => {
@@ -20,58 +20,69 @@ function ProcessingServiceHistory() {
       window.alert(validRepairDuration.message);
       return;
     }
-    handleProcessingFormSubmission(appointmentID);
-    navigate(-1);
+    handleProcessingFormSubmission(appointmentID).then(() => navigate(-1));
   };
 
   return (
-    <div>
+    <div className="container mt-4">
       <h3>Processing History</h3>
       <form onSubmit={handleForm}>
-        <InputField
-          id="partsChanged"
-          name="partsChanged"
-          label="Parts Changed"
-          type="text"
-          value={processingServiceHistory.partsChanged}
-          onChange={handleChangeProcessing}
-          required
-        />
-        <TextareaField
-          id="operations"
-          name="operations"
-          label="Operations Performed"
-          value={processingServiceHistory.operations}
-          onChange={handleChangeProcessing}
-          required
-        />
-        <TextareaField
-          id="otherIssues"
-          name="otherIssues"
-          label="Other Issues Detected"
-          value={processingServiceHistory.otherIssues}
-          onChange={handleChangeProcessing}
-        />
-        <InputField
-          id="repairedOtherIssues"
-          name="repairedOtherIssues"
-          label="Repaired Other Issues"
-          type="checkbox"
-          checked={processingServiceHistory.repairedOtherIssues}
-          onChange={handleChangeProcessing}
-        />
-        <InputField
-          id="repairDuration"
-          name="repairDuration"
-          label="Repair Duration (minutes)"
-          type="number"
-          value={processingServiceHistory.repairDuration}
-          onChange={handleChangeProcessing}
-          required
-          step="10"
-          min="0"
-        />
-        <button type="submit">Submit</button>
+        <div className="mb-3">
+          <InputField
+            id="partsChanged"
+            name="partsChanged"
+            label="Parts Changed"
+            type="text"
+            value={processingServiceHistory.partsChanged}
+            onChange={handleChangeProcessing}
+            required
+          />
+        </div>
+        <div className="mb-3">
+          <TextareaField
+            id="operations"
+            name="operations"
+            label="Operations Performed"
+            value={processingServiceHistory.operations}
+            onChange={handleChangeProcessing}
+            required
+          />
+        </div>
+        <div className="mb-3">
+          <TextareaField
+            id="otherIssues"
+            name="otherIssues"
+            label="Other Issues Detected"
+            value={processingServiceHistory.otherIssues}
+            onChange={handleChangeProcessing}
+          />
+        </div>
+        <div className="mb-3 form-check">
+          <InputField
+            id="repairedOtherIssues"
+            name="repairedOtherIssues"
+            label="Repaired Other Issues"
+            type="checkbox"
+            checked={processingServiceHistory.repairedOtherIssues}
+            onChange={handleChangeProcessing}
+          />
+        </div>
+        <div className="mb-3">
+          <InputField
+            id="repairDuration"
+            name="repairDuration"
+            label="Repair Duration (minutes)"
+            type="number"
+            value={processingServiceHistory.repairDuration}
+            onChange={handleChangeProcessing}
+            required
+            step="10"
+            min="0"
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
       </form>
     </div>
   );

@@ -4,16 +4,17 @@ import { useParams } from "react-router-dom";
 import { useAppointmentService } from "../../context/AppointmentServiceContext/AppointmentServiceContext";
 import { getAppointment } from "../../services/appointments";
 
-import AppointmentCard from "../../components/AppointmentCard/AppointmentCard";
+import AppointmentRow from "../../components/AppointmentRow/AppointmentRow";
 import ProcessingServiceCard from "../../components/ProcessingServiceCard/ProcessingServiceCard";
 import ReceptionServiceCard from "../../components/ReceptionServiceCard/ReceptionServiceCard";
+import AppointmentsTable from "../../components/AppointmentsTable/AppointmentsTable";
 
 function ServiceHistory() {
   const { appointmentData, setAppointmentData } = useAppointmentService();
   const { id: appointmentID } = useParams();
 
   useEffect(() => {
-    async function fetchAppointmentData() {
+    async function getAppointmentData() {
       try {
         const currentAppointmentData = await getAppointment(appointmentID);
         setAppointmentData(currentAppointmentData);
@@ -21,15 +22,24 @@ function ServiceHistory() {
         console.error("Error fetching appointment data:", error);
       }
     }
-    fetchAppointmentData();
-  }, [appointmentID, appointmentData]);
+    getAppointmentData();
+  }, [appointmentID]);
 
   return (
-    <div>
+    <div className="container">
       <h3>Appointment Details</h3>
-      <AppointmentCard appointment={appointmentData} showDetailsLink={false} />
-      <ReceptionServiceCard receptionServiceData={appointmentData?.receptionServiceHistory} />
-      <ProcessingServiceCard processingServiceData={appointmentData?.processingServiceHistory} />
+      <AppointmentsTable appointmentsList={[appointmentData]} linkToAppointment={false} />
+      <div className="container d-flex justify-content-center">
+        <div className="w-100 mx-3">
+          <ReceptionServiceCard receptionServiceData={appointmentData?.receptionServiceHistory} />
+        </div>
+        <div className="w-100 mx-3">
+          <ProcessingServiceCard
+            receptionServiceData={appointmentData?.receptionServiceHistory}
+            processingServiceData={appointmentData?.processingServiceHistory}
+          />
+        </div>
+      </div>
     </div>
   );
 }

@@ -20,9 +20,9 @@ export async function getClient(id) {
   }
 }
 
-export const addClient = async (clientData) => {
+export const addClient = async (client) => {
   try {
-    const response = await axios.post(`${API_URL}`, clientData);
+    const response = await axios.post(`${API_URL}`, client);
     return response.data;
   } catch (error) {
     console.error(error);

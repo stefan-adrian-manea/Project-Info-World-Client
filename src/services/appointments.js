@@ -45,3 +45,11 @@ export const addReceptionServiceHistory = async (appointmentId, processingData) 
     console.error(error);
   }
 };
+export const updateAppointment = async (appointmentId, updatedAppointmentData) => {
+  try {
+    const response = await axios.put(`${API_URL}/${appointmentId}`, updatedAppointmentData);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};

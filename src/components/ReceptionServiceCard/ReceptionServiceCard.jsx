@@ -2,27 +2,40 @@ import { Link } from "react-router-dom";
 function ReceptionServiceCard({ receptionServiceData }) {
   const currentPath = window.location.pathname;
   return (
-    <>
-      <h3>Reception</h3>
+    <div className="card">
+      <div className="card-header">
+        <h3 className="text-center">Reception</h3>
+      </div>
+
       {receptionServiceData ? (
-        <div>
-          <div>Service Type: {receptionServiceData?.serviceType}</div>
-          <div>Is Scratched: {receptionServiceData?.isScratched ? "Yes" : "No"}</div>
-          <div>Is Damaged: {receptionServiceData?.isDamaged ? "Yes" : "No"}</div>
+        <ul className="list-group list-group-flush">
+          <li className="list-group-item">Service Type: {receptionServiceData?.serviceType}</li>
+          <li className="list-group-item">
+            Is Scratched: {receptionServiceData?.isScratched ? "Yes" : "No"}
+          </li>
+          <li className="list-group-item">
+            Is Damaged: {receptionServiceData?.isDamaged ? "Yes" : "No"}
+          </li>
           {receptionServiceData?.isScratched && (
-            <div>Scratched Location: {receptionServiceData?.scratchedLocation}</div>
+            <li className="list-group-item">
+              Scratched Location: {receptionServiceData?.scratchedLocation}
+            </li>
           )}
           {receptionServiceData?.isDamaged && (
-            <div>Damage Location: {receptionServiceData?.damageLocation}</div>
+            <li className="list-group-item">
+              Damage Location: {receptionServiceData?.damageLocation}
+            </li>
           )}
-          <div>Mentioned Problems: {receptionServiceData?.mentionedProblems}</div>
-        </div>
+          <li className="list-group-item">
+            Mentioned Problems: {receptionServiceData?.mentionedProblems}
+          </li>
+        </ul>
       ) : (
-        <Link to={`${currentPath}/reception`}>
-          <span>Add reception information</span>
+        <Link to={`${currentPath}/reception`} className="btn btn-primary mt-3">
+          Add reception information
         </Link>
       )}
-    </>
+    </div>
   );
 }
 
