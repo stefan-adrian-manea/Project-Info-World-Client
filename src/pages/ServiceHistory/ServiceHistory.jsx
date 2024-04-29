@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import { useAppointmentService } from "../../context/AppointmentServiceContext/AppointmentServiceContext";
 import { getAppointment } from "../../services/appointments";
 
-import AppointmentRow from "../../components/AppointmentRow/AppointmentRow";
 import ProcessingServiceCard from "../../components/ProcessingServiceCard/ProcessingServiceCard";
 import ReceptionServiceCard from "../../components/ReceptionServiceCard/ReceptionServiceCard";
 import AppointmentsTable from "../../components/AppointmentsTable/AppointmentsTable";

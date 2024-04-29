@@ -8,3 +8,8 @@
   text-align: center;
   width: 50%;
 }
+
+.appointments-container .table tr:hover {
+  background-color: #ddd;
+  cursor: pointer;
+}

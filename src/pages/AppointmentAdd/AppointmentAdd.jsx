@@ -78,7 +78,6 @@ function AppointmentAdd() {
               { value: "", label: "Select contact method" },
               { value: `Email: ${client?.email}`, label: "Email" },
               { value: `Tel: ${client?.phoneNumber}`, label: "Telephone" },
-              { value: "Personal", label: "In person" },
             ]}
           />
         </div>

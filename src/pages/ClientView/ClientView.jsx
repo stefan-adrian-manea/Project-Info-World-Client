@@ -2,15 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useClient } from "../../hooks/useClient.hook";
 import { getAppointments } from "../../services/appointments";
-import AppointmentRow from "../../components/AppointmentRow/AppointmentRow";
 
-import CarRow from "../../components/CarRow/CarRow";
-import ClientRow from "../../components/ClientRow/ClientRow";
-
-import "./ClientView.css";
 import ClientsTable from "../../components/ClientsTable/ClientsTable";
 import CarsTable from "../../components/CarsTable/CarsTable";
 import AppointmentsTable from "../../components/AppointmentsTable/AppointmentsTable";
+import "./ClientView.css";
 
 function ClientView() {
   const { handleGetClient, client, carsList } = useClient();

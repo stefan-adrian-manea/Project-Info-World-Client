@@ -13,7 +13,11 @@ function AppointmentRow({ appointment, linkToAppointment }) {
       <td>{contact}</td>
       <td>{car}</td>
       <td>{action}</td>
-      <td>{action}</td>
+      {appointment?.processingServiceHistory?.completed === true ? (
+        <td>Completed</td>
+      ) : (
+        <td>Unfinished</td>
+      )}
     </tr>
   );
 }

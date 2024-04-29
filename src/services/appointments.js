@@ -29,22 +29,8 @@ export const getAppointments = async () => {
   }
 };
 
-export const addProcessingServiceHistory = async (appointmentId, processingData) => {
-  try {
-    const response = await axios.put(`${API_URL}/${appointmentId}`, processingData);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
-};
-export const addReceptionServiceHistory = async (appointmentId, processingData) => {
-  try {
-    const response = await axios.put(`${API_URL}/${appointmentId}`, processingData);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
-};
+
+
 export const updateAppointment = async (appointmentId, updatedAppointmentData) => {
   try {
     const response = await axios.put(`${API_URL}/${appointmentId}`, updatedAppointmentData);

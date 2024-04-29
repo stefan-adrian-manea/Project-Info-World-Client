@@ -1,10 +1,7 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { getClients } from "../../services/clients";
 
 import SearchBar from "../../components/SearchBar/SearchBar";
-import ClientRow from "../../components/ClientRow/ClientRow";
-
 import ClientsTable from "../../components/ClientsTable/ClientsTable";
 
 function ClientsList() {

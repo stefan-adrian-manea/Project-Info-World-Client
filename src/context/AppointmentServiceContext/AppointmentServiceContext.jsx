@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 
-import { updateAppointment, addProcessingServiceHistory } from "../../services/appointments";
+import { updateAppointment } from "../../services/appointments";
 
 const AppointmentServiceContext = createContext();
 
@@ -20,6 +20,7 @@ const defaultFormProcessing = {
   otherIssues: "",
   repairedOtherIssues: false,
   repairDuration: "",
+  completed:false,
 };
 export const AppointmentServiceProvider = ({ children }) => {
   const [appointmentData, setAppointmentData] = useState({});
@@ -27,6 +28,7 @@ export const AppointmentServiceProvider = ({ children }) => {
   const [processingServiceHistory, setProcessingServiceHistory] = useState(defaultFormProcessing);
 
   const handleReceptionFormSubmission = async (appointmentID) => {
+    setProcessingServiceHistory((prevState) => ({ ...prevState, completed: true }));
     try {
       await updateAppointment(appointmentID, {
         ...appointmentData,
